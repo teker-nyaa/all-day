@@ -18,25 +18,28 @@ function random(min, max) {
 // 9: pink
 // 10: transparent
 // 11: random
-const palette = [rgba(255, 255, 255, 1), rgba(0, 0, 0, 1), rgba(128, 128, 128, 1), rgba(255, 0, 0, 1), rgba(0, 255, 0, 1), rgba(0, 0, 255, 1), rgba(255, 200, 0, 1), rgba(255, 255, 0, 1), rgba(255, 0, 255, 1), rgba(255, 200, 200, 1), rgba(0, 0, 0, 0), rgba(]; 
+const palette = [rgba(255, 255, 255, 1), rgba(0, 0, 0, 1), rgba(128, 128, 128, 1), 
+                 rgba(255, 0, 0, 1), rgba(0, 255, 0, 1), rgba(0, 0, 255, 1),
+                 rgba(255, 200, 0, 1), rgba(255, 255, 0, 1), rgba(255, 0, 255, 1),
+                 rgba(255, 200, 200, 1), rgba(0, 0, 0, 0), rgba(random(0, 255), random(0, 255), random(0, 255))]; 
 
 class all_day {
   constructer(grid, scale) {
-    this.grid = grid;
-    this.sacle = scale;
+    this.grid = grid; // the bitmap
+    this.sacle = scale; // the scale
   }
 
   render(canvas) {
-    var ctx = document.getElementById(canvas).getContext('2d);
+    var ctx = document.getElementById(canvas).getContext('2d'); // get the canvas
     for(var i = 0; i != 63; i++) {
-      if(this.grid[i]){
+      if(this.grid[i]){ // check if the row exists
         for(var j = 0; j != 63; j++) {
-          ctx.fillStyle = this.grid[i][j];
-          ctx.rect(j*this.scale, i*this.scale, 64*this.scale, 64*this.scale);
+          ctx.fillStyle = this.grid[i][j]; // set the color
+          ctx.rect(j*this.scale, i*this.scale, 64*this.scale, 64*this.scale); // draw the pixel
         }
       }
       else {
-        console.error(`index ${this.grid[i]} doesn't exist)
+        console.error(`index ${this.grid[i]} doesn't exist) // error if the row doesn't exist
       }
     }
   }
